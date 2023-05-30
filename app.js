@@ -18,8 +18,13 @@ try {
     app.use(express.json())
 
     //Que entienda el enrutado de los Links
-    app.use(rutasController);
+    app.use('/rentaCar',rutasController);
 
+    app.use((err, req, res, next) =>{
+        return res.json({
+            message: 'Error: ' + err.message
+        })
+    })
 
     app.listen(4000);
     console.log('****CONEXION CORRECTA EN PUERTO 4000*****');

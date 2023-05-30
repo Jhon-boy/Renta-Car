@@ -3,13 +3,13 @@ const pool = require('../../config/db');
 
 
 
-const getRoles = async (req, res) => {
+const getRoles = async (req, res, next) => {
     try {
         const consulta = await pool.query('SELECT * FROM "Roles"')
         console.log(consulta);
         res.json(consulta);
     } catch (error) {
-        console.log('No se ejecuto'+ error.message);
+        next(error);
     }
 }
 
